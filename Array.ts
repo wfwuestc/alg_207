@@ -26,6 +26,16 @@ class Arrays {
     this.data[index] = e
   }
 
+  remove(index: number) {
+    if (index < 0 || index >= this.size) {
+      return new Error('Remove failed. Index is illegal')
+    }
+    let ret = this.data[index]
+    for(let i = index + 1; i < this.size; i++) {
+      this.data[i - 1] = this.data[i]
+    }
+  }
+
   contains(e: number) {
     for(let i = 0; i < this.size; i++) {
       if(this.data[i] === e) {
@@ -33,6 +43,15 @@ class Arrays {
       }
     }
     return false
+  }
+
+  find(e) {
+    for(let i = 0; i < this.size; i++) {
+      if(this.data[i] === e) {
+        return i
+      }
+    }
+    return -1
   }
 
   getCapacity(): number {
